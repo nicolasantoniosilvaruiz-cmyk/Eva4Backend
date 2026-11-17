@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Eliminar videojuego</h1>
+<div class="card card-body mt-4">
+  <p>¿Confirmas que quieres eliminar <strong>{{ object.titulo }}</strong>?</p>
+  <p>Esta acción elimina el registro de la base de datos.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+    <a class="btn btn-outline-secondary" href="{% url 'catalogo:detalle' object.pk %}">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

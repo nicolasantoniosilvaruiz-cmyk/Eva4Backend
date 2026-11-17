@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ videojuego.titulo }} · Catálogo{% endblock %}
+{% block content %}
+<article class="card shadow-sm">
+  <div class="card-body">
+    <h1>{{ videojuego.titulo }}</h1>
+    <dl class="row mt-4">
+      <dt class="col-sm-4">Género</dt><dd class="col-sm-8">{{ videojuego.genero.nombre }}</dd>
+      <dt class="col-sm-4">Precio</dt><dd class="col-sm-8">{{ videojuego.precio }} CLP</dd>
+      <dt class="col-sm-4">Lanzamiento</dt><dd class="col-sm-8">{{ videojuego.fecha_lanzamiento|date:"d/m/Y" }}</dd>
+      <dt class="col-sm-4">Disponibilidad</dt><dd class="col-sm-8">{{ videojuego.disponible|yesno:"Disponible,No disponible" }}</dd>
+    </dl>
+    <a class="btn btn-outline-primary" href="{% url 'catalogo:lista' %}">Volver al catálogo</a>
+    {% if user.is_authenticated %}
+      <a class="btn btn-secondary" href="{% url 'catalogo:editar' videojuego.pk %}">Editar</a>
+      <a class="btn btn-danger" href="{% url 'catalogo:eliminar' videojuego.pk %}">Eliminar</a>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}

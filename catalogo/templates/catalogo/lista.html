@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">Videojuegos</h1>
+<div class="row g-4">
+  {% for juego in videojuegos %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <article class="card h-100 shadow-sm">
+        <div class="card-body">
+          <p class="text-secondary mb-1">{{ juego.genero.nombre }}</p>
+          <h2 class="h5"><a href="{% url 'catalogo:detalle' juego.pk %}">{{ juego.titulo }}</a></h2>
+          <p class="fs-5">{{ juego.precio }} CLP</p>
+          {% if juego.disponible %}
+            <span class="badge text-bg-success">Disponible</span>
+          {% else %}
+            <span class="badge text-bg-secondary">No disponible</span>
+          {% endif %}
+        </div>
+        <div class="card-footer d-flex flex-wrap gap-2">
+          <a class="btn btn-primary btn-sm" href="{% url 'catalogo:detalle' juego.pk %}">Ver detalle</a>
+          {% if user.is_authenticated %}
+            <a class="btn btn-outline-secondary btn-sm" href="{% url 'catalogo:editar' juego.pk %}">Editar</a>
+            <a class="btn btn-outline-danger btn-sm" href="{% url 'catalogo:eliminar' juego.pk %}">Eliminar</a>
+          {% endif %}
+        </div>
+      </article>
+    </div>
+  {% empty %}
+    <p>Aún no hay videojuegos registrados.</p>
+  {% endfor %}
+</div>
+{% endblock %}
