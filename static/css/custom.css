@@ -1,0 +1,30 @@
+.catalogo-nav {
+  background: #17243a;
+}
+
+.catalogo-nav .container {
+  row-gap: .75rem;
+}
+
+main h1 {
+  color: #17243a;
+}
+
+main .card {
+  border-color: #dce3ee;
+  border-radius: .9rem;
+}
+
+main .card-footer {
+  background: #eef3fa;
+}
+
+.login-panel {
+  max-width: 28rem;
+}
+
+.gamehub-logo {
+  object-fit: contain;
+  border-radius: .4rem;
+  margin-inline-end: .35rem;
+}
